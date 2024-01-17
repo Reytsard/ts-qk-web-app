@@ -3,10 +3,10 @@ import { Outlet } from "react-router-dom";
 
 function RootLayout() {
   return (
-    <div className="h-full w-full bg-gray-700">
-      <div className="h-20 flex justify-between items-center">
+    <div className="h-full w-full bg-gray-700 overflow-hidden">
+      <div className="h-20 flex justify-between items-center bg-purple text-white">
         <div className="h-full">Logo</div>
-        <div className="flex list-none mr-5 gap-5">
+        <div className="h-full flex list-none mr-5 gap-5">
           <div>About</div>
           <div>Home</div>
           <div>Contact Us</div>

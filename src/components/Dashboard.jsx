@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 
@@ -10,22 +11,23 @@ function Dashboard() {
     setPudList(props.pudData);
   }, [props]);
   return (
-    <div className="h-full w-full flex">
+    <div className="flex w-full h-full">
       <>
-        <ul className="left-0 h-full w-[300px] bg-red-300 text-black flex flex-col items-center justify-evenly ">
+        <ul className="left-0 h-full w-[300px] bg-red-300 text-black flex flex-col items-center justify-evenly bg-orange">
           <li>logs</li>
           <li>Summary</li>
           <li>Signout</li>
         </ul>
       </>
-
-      <div className="right-1 top-1 w-full h-full grid grid-cols-2 grid-rows-3">
-        <div>Welcome USERNAME!</div>
-        <div className="row-start-2">Chart for profit for the day</div>
-        <div className="row-start-3">Transactions of the day</div>
-        <div className="row-start-2 col-start-2">On the right Queue</div>
-        <div className="row-start-3 col-start-2">
-          below queue is for delivery or pickup
+      <div className="w-full h-full bg-center bg-cover bg-dashboard">
+        <div className="w-full h-full right-1 top-1 grid grid-cols-[2fr_1fr] grid-rows-3 bg-opacity-50">
+          <div className="col-span-2 pt-10 pl-40">Welcome USERNAME!</div>
+          <div className="row-start-2">Chart for profit for the day</div>
+          <div className="row-start-3">Transactions of the day</div>
+          <div className="col-start-2 row-start-2">On the right Queue</div>
+          <div className="col-start-2 row-start-3">
+            below queue is for delivery or pickup
+          </div>
         </div>
       </div>
     </div>
@@ -42,6 +44,7 @@ export const dashboardLoader = async () => {
   const pud = await axios.get(
     "https://qk-app-backend.vercel.app/record/pending"
   );
+  //get data of user too, you will have to adjust backend to accept idnumber as params in backend
   const pudData = pud.data[0];
 
   return {
